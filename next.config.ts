@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
   },
   // Disable Turbopack explicitly to avoid the webpack config conflict with next-pwa
   // Note: Standard way to disable is via CLI or flags, but we can try to force webpack
+  turbopack: {},
   webpack: (config: any) => {
     return config;
   },
