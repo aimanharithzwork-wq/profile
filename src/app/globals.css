@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-green: #00ff9f;
+  --color-neon-purple: #bc13fe;
+  --color-cyber-black: #050505;
+  --color-cyber-grid: rgba(0, 255, 159, 0.05);
+  
+  --animate-glitch: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  --animate-flicker: flicker 0.15s infinite;
+  --animate-scanline: scanline 8s linear infinite;
+
+  @keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+  }
+
+  @keyframes flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.9; }
+    15% { opacity: 0.95; }
+    20% { opacity: 0.98; }
+    25% { opacity: 0.95; }
+    30% { opacity: 0.9; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+}
+
+:root {
+  --background: #050505;
+  --foreground: #00ff9f;
+  --neon-green: #00ff9f;
+  --neon-purple: #bc13fe;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  cursor: crosshair;
+}
+
+/* CRT Screen Effect */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.15;
+}
+
+.crt-scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 255, 159, 0.1);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 10000;
+  animation: scanline 8s linear infinite;
+}
+
+/* Cyber Grid Background */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, var(--color-cyber-grid) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--color-cyber-grid) 1px, transparent 1px);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 159, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 159, 0.1);
+}
+
+/* Neon Text Glow */
+.text-glow {
+  text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+}
+
+/* Glitch Typography */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text:hover {
+  animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00ff9f;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc7d;
+}
